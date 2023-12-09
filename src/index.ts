@@ -8,12 +8,27 @@ import type { RuleListener } from '@typescript-eslint/utils/ts-eslint'
 
 export interface ESLintPluginUnimportOptions {
   getImports: (file: string) => Import[]
+
+  /**
+   * Whether to check vue component
+   */
+  vueComponent?: boolean
+
+  /**
+   * Glob patterns to include
+   */
+  include?: string[]
+  /**
+   * Glob patterns to exclude
+   */
+  exclude?: string[]
 }
 
 export function createUnimportConfig(options: ESLintPluginUnimportOptions) {
   return createSimplePlugin({
     name: 'unimport',
-    include: ['**/*.ts', '**/*.vue'],
+    include: options.include ?? ['**/*.(m|c)?tsx?', '**/*.vue'],
+    exclude: options.exclude ?? ['**/*.mdx?/**'],
     severity: 'warn',
     create(context) {
       let _scopeManager: ScopeManager | undefined
@@ -24,6 +39,10 @@ export function createUnimportConfig(options: ESLintPluginUnimportOptions) {
         if (!_scopeManager) {
           _scopeManager = analyze(context.sourceCode.ast as any, {
             sourceType: 'module',
+          })
+
+          _scopeManager.globalScope?.variables.forEach((node) => {
+            importedNames.add(node.name)
           })
         }
         return _scopeManager
@@ -57,6 +76,9 @@ export function createUnimportConfig(options: ESLintPluginUnimportOptions) {
           return
 
         const scopeManager = getScopeManager()
+        if (importedNames.has(node.name))
+          return
+
         let parent: TSESTree.Node | undefined = node.parent
         let currentScope: Scope | null = null
         while (parent && !currentScope) {
