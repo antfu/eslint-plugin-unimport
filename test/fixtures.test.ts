@@ -5,7 +5,7 @@ import { execa } from 'execa'
 import fg from 'fast-glob'
 import type { Linter } from 'eslint'
 import { createUnimport } from 'unimport'
-import type { ESLintPluginUnimportOptions } from '../src'
+import type { UnimportAutoInsertOptions } from '../src'
 
 beforeAll(async () => {
   await fs.rm('_fixtures', { recursive: true, force: true })
@@ -17,7 +17,7 @@ afterAll(async () => {
 runWithConfig('basic', {
 })
 
-function runWithConfig(name: string, configs: Partial<ESLintPluginUnimportOptions>, ...items: Linter.FlatConfig[]) {
+function runWithConfig(name: string, configs: Partial<UnimportAutoInsertOptions>, ...items: Linter.FlatConfig[]) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve(__dirname, 'fixtures/input')
     const output = resolve(__dirname, 'fixtures/output', name)
@@ -44,14 +44,14 @@ function runWithConfig(name: string, configs: Partial<ESLintPluginUnimportOption
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
 import { vue, combine } from '@antfu/eslint-config'
-import { createUnimportConfig } from 'eslint-plugin-unimport'
+import { createAutoInsert } from 'eslint-plugin-unimport'
 import pluginImport from 'eslint-plugin-i'
 import pluginUnusedImports from 'eslint-plugin-unused-imports'
 
 
 export default combine(
   vue(),
-  createUnimportConfig({
+  createAutoInsert({
     ...${JSON.stringify(configs)},
     getImports() {
       return ${JSON.stringify(await ctx.getImports() ?? [])}
