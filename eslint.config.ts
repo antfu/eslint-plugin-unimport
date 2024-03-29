@@ -3,7 +3,12 @@ import antfu from '@antfu/eslint-config'
 import { createUnimport } from 'unimport'
 import { createAutoInsert } from './src'
 
-export default (async () => {
+export default antfu(
+  {
+    ignores: ['**/fixtures/**'],
+    vue: true,
+  },
+).append((async () => {
   const unimport = createUnimport({
     presets: [
       'vue',
@@ -14,13 +19,7 @@ export default (async () => {
   await unimport.init()
   const imports = await unimport.getImports()
 
-  return antfu(
-    {
-      ignores: ['**/fixtures/**'],
-      vue: true,
-    },
-    createAutoInsert({
-      getImports: () => imports,
-    }),
-  )
-})()
+  return createAutoInsert({
+    getImports: () => imports,
+  })
+})())
