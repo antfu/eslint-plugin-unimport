@@ -20,6 +20,6 @@ export default antfu(
   const imports = await unimport.getImports()
 
   return createAutoInsert({
-    getImports: () => imports,
+    imports,
   })
 })())

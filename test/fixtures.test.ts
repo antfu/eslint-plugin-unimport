@@ -48,14 +48,11 @@ import { createAutoInsert } from 'eslint-plugin-unimport'
 import pluginImport from 'eslint-plugin-i'
 import pluginUnusedImports from 'eslint-plugin-unused-imports'
 
-
 export default combine(
   vue(),
   createAutoInsert({
     ...${JSON.stringify(configs)},
-    getImports() {
-      return ${JSON.stringify(await ctx.getImports() ?? [])}
-    }
+    imports: ${JSON.stringify(await ctx.getImports() ?? [])}
   }),
   {
     plugins: {

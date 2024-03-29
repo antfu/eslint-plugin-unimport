@@ -57,7 +57,7 @@
   "dependencies": {
     "@typescript-eslint/scope-manager": "^7.4.0",
     "@typescript-eslint/utils": "^7.4.0",
-    "eslint-factory": "^0.0.2",
+    "debug": "^4.3.4",
     "pathe": "^1.1.2",
     "unimport": "^3.7.1"
   },
@@ -65,6 +65,7 @@
     "@antfu/eslint-config": "^2.11.5",
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
+    "@types/debug": "^4.1.12",
     "@types/eslint": "^8.56.6",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.30",
