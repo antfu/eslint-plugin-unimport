@@ -130,6 +130,12 @@ export function createImportsListeners(
             visit(expressionNode.consequent)
             visit(expressionNode.alternate)
             return
+          case 'FunctionExpression':
+          case 'ArrowFunctionExpression':
+            for (const param of expressionNode.params)
+              visit(param)
+            visit(expressionNode.body)
+            return
           case 'LogicalExpression':
           case 'BinaryExpression':
             visit(expressionNode.left)
@@ -156,6 +162,12 @@ export function createImportsListeners(
         if ('children' in node) {
           for (const child of node.children)
             visit(child)
+          return
+        }
+
+        if ('body' in node) {
+          visit(node.body)
+          return
         }
 
         {

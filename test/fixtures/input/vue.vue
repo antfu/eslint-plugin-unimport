@@ -6,7 +6,7 @@ const b = computed(() => a.value + 1)
 </script>
 
 <template>
-  <div v-if="toValue(a)">
+  <div v-if="toValue(a)" @click="(e)=>console.log(e, shallowRef(2))">
     {{ a }} + {{ b }} = {{ a + b }}
     {{ reactive(useRoute()).path }}
   </div>
