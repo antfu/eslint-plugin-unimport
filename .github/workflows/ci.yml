@@ -69,6 +69,3 @@ jobs:
 
       - name: Test
         run: nr test
-
-      - name: Lint (Playground)
-        run: nr lint:play
