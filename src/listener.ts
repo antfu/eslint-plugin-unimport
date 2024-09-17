@@ -1,8 +1,8 @@
 import type { Scope, ScopeManager } from '@typescript-eslint/scope-manager'
-import { analyze } from '@typescript-eslint/scope-manager'
 import type { TSESTree } from '@typescript-eslint/utils'
-import type { Import } from 'unimport'
 import type { RuleContext, RuleListener } from '@typescript-eslint/utils/ts-eslint'
+import type { Import } from 'unimport'
+import { analyze } from '@typescript-eslint/scope-manager'
 import Debug from 'debug'
 
 const debug = Debug('unimport:eslint')
@@ -171,7 +171,6 @@ export function createImportsListeners(
         }
 
         {
-          // eslint-disable-next-line unused-imports/no-unused-vars
           const { tokens, parent, range, loc, ...rest } = node
           debug('Unknown VNode', rest)
         }

@@ -1,6 +1,6 @@
 import { dirname, isAbsolute } from 'pathe'
-import { betterRelative, createRule } from '../utils'
 import { createImportsListeners } from '../listener'
+import { betterRelative, createRule } from '../utils'
 
 export default createRule({
   name: 'auto-insert',
@@ -17,7 +17,7 @@ export default createRule({
     ],
     fixable: 'code',
   },
-  defaultOptions: [],
+  defaultOptions: [[]],
   create(context) {
     return createImportsListeners(
       context,

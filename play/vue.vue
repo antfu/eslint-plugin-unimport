@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import { computed, reactive, ref, toValue } from 'vue'
+import { useRoute } from 'vue-router'
 
 const a = ref(1)
 const b = computed(() => a.value + 1)

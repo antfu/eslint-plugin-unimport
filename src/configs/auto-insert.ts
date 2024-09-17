@@ -1,5 +1,5 @@
-import type { Import } from 'unimport'
 import type { Linter } from 'eslint'
+import type { Import } from 'unimport'
 import { plugin } from '../plugins'
 
 export interface UnimportAutoInsertOptions {
@@ -7,7 +7,6 @@ export interface UnimportAutoInsertOptions {
    * The imports registry.
    */
   imports: Import[]
-
   /**
    * Glob patterns to include
    */
@@ -23,7 +22,6 @@ export interface UnimportAutoInsertOptions {
  */
 export function createAutoInsert(options: UnimportAutoInsertOptions): Linter.FlatConfig {
   return {
-    // @ts-expect-error Name is not yet in the types
     name: 'unimport:auto-insert',
     plugins: {
       unimport: plugin as any,

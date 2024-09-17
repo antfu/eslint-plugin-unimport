@@ -2,7 +2,7 @@
   "name": "eslint-plugin-unimport",
   "type": "module",
   "version": "0.0.3",
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@9.10.0",
   "description": "Insert imports automatically from Unimport in ESLint.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -43,7 +43,7 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "lint": "eslint .",
+    "lint": "eslint --flag unstable_ts_config .",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
@@ -52,49 +52,48 @@
     "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
-    "eslint": "^8.40.0"
+    "eslint": "^9.0.0 || ^8.45.0"
   },
   "dependencies": {
-    "@typescript-eslint/scope-manager": "^7.4.0",
-    "@typescript-eslint/utils": "^7.4.0",
-    "debug": "^4.3.4",
+    "@typescript-eslint/scope-manager": "^8.6.0",
+    "@typescript-eslint/utils": "^8.6.0",
+    "debug": "^4.3.7",
     "pathe": "^1.1.2",
-    "unimport": "^3.7.1"
+    "unimport": "^3.12.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.11.5",
-    "@antfu/ni": "^0.21.12",
-    "@antfu/utils": "^0.7.7",
+    "@antfu/eslint-config": "^3.6.2",
+    "@antfu/ni": "^0.23.0",
+    "@antfu/utils": "^0.7.10",
     "@types/debug": "^4.1.12",
-    "@types/eslint": "^8.56.6",
+    "@types/eslint": "^9.6.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.11.30",
-    "@vueuse/core": "^10.9.0",
-    "bumpp": "^9.4.0",
-    "eslint": "npm:eslint-ts-patch@8.55.0-1",
+    "@types/node": "^22.5.5",
+    "@vueuse/core": "^11.1.0",
+    "bumpp": "^9.5.2",
+    "eslint": "^9.10.0",
     "eslint-plugin-i": "^2.29.1",
     "eslint-plugin-unimport": "workspace:*",
-    "eslint-plugin-unused-imports": "^3.1.0",
-    "eslint-ts-patch": "8.55.0-1",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "esno": "^4.7.0",
-    "execa": "^8.0.1",
+    "execa": "^9.4.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "lint-staged": "^15.2.2",
-    "pnpm": "^8.15.5",
-    "rimraf": "^5.0.5",
+    "lint-staged": "^15.2.10",
+    "pnpm": "^9.10.0",
+    "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.4.3",
+    "typescript": "^5.6.2",
     "unbuild": "^2.0.0",
-    "vite": "^5.2.7",
-    "vitest": "^1.4.0",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vite": "^5.4.6",
+    "vitest": "^2.1.1",
+    "vue": "^3.5.6",
+    "vue-router": "^4.4.5"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "eslint --flag unstable_ts_config --fix"
   }
 }
