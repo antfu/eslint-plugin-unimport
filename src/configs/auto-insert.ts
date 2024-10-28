@@ -9,10 +9,14 @@ export interface UnimportAutoInsertOptions {
   imports: Import[]
   /**
    * Glob patterns to include
+   *
+   * @default ['**\/*.?([cm])[jt]s?(x)', '**\/*.vue']
    */
   include?: string[]
   /**
    * Glob patterns to exclude
+   *
+   * @default ['**\/*.md?(x)/**']
    */
   exclude?: string[]
 }
@@ -26,8 +30,8 @@ export function createAutoInsert(options: UnimportAutoInsertOptions): Linter.Fla
     plugins: {
       unimport: plugin as any,
     },
-    files: options.include ?? ['**/*.(m|c)?tsx?', '**/*.vue'],
-    ignores: options.exclude ?? ['**/*.mdx?/**'],
+    files: options.include ?? ['**/*.?([cm])[jt]s?(x)', '**/*.vue'],
+    ignores: options.exclude ?? ['**/*.md?(x)/**'],
     rules: {
       'unimport/auto-insert': [
         'error',
