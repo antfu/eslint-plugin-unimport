@@ -8,8 +8,47 @@
 
 Insert imports automatically from Unimport in ESLint.
 
-> [!IMPORTANT]
-> WIP, undocumented
+## Usages
+
+### With Nuxt
+
+You can use the [`nuxt-eslint-auto-explicit-import`](https://github.com/antfu/nuxt-eslint-auto-explicit-import) module directly, which integrates this plugin.
+
+### With `unplugin-auto-import`
+
+In your `vite.config.ts`:
+
+```ts
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    AutoImport({
+      // other options...
+      dumpUnimportItems: true // <---
+    })
+  ]
+})
+```
+
+And in your `eslint.config.js`:
+
+```js
+import fs from 'node:fs'
+import { createAutoInsert } from 'eslint-plugin-unimport'
+
+export default [
+  // your other configs...
+  createAutoInsert({
+    imports: JSON.parse(fs.readFileSync('.unimport-items.json', 'utf-8'))
+  }),
+]
+```
+
+### Setup Manually
+
+Refer to [this file](./eslint.config.ts), where you can create your temporary unimport instance and use it to insert imports.
 
 ## Sponsors
 
