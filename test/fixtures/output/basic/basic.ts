@@ -1,3 +1,4 @@
+import { MULTIPLIER } from './constants'
 import { computed, ref, shallowRef } from 'vue'
 
 export function useMyCustomComposable() {
