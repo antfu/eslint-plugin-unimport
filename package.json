@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-unimport",
   "type": "module",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.25.0",
   "description": "Insert imports automatically from Unimport in ESLint.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
