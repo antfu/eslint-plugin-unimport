@@ -4,6 +4,7 @@ import type { RuleContext, RuleListener } from '@typescript-eslint/utils/ts-esli
 import type { Import } from 'unimport'
 import { analyze } from '@typescript-eslint/scope-manager'
 import Debug from 'debug'
+import { normalize } from 'pathe'
 
 const debug = Debug('unimport:eslint')
 
@@ -55,7 +56,7 @@ export function createImportsListeners(
     const item = importsMap.get(node.name)
     if (!item)
       return
-    if (item.from === context.filename)
+    if (normalize(item.from) === normalize(context.filename))
       return
 
     const scopeManager = getScopeManager()
