@@ -1,8 +1,6 @@
-catalogMode: prefer
-
 shellEmulator: true
-
 trustPolicy: no-downgrade
+ignoreWorkspaceRoot: true
 
 packages:
   - playground

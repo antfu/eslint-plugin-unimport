@@ -3,10 +3,10 @@ import type { TSESTree } from '@typescript-eslint/utils'
 import type { RuleContext, RuleListener } from '@typescript-eslint/utils/ts-eslint'
 import type { Import } from 'unimport'
 import { analyze } from '@typescript-eslint/scope-manager'
-import Debug from 'debug'
+import { createDebug } from 'obug'
 import { normalize } from 'pathe'
 
-const debug = Debug('unimport:eslint')
+const debug = createDebug('unimport:eslint')
 
 /**
  * Create a rule listener with a callback the will be called on every unimport entry found.
