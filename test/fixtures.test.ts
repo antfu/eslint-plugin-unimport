@@ -45,7 +45,7 @@ function runWithConfig(name: string, configs: Partial<UnimportAutoInsertOptions>
 // @eslint-disable
 import { vue, combine } from '@antfu/eslint-config'
 import { createAutoInsert } from 'eslint-plugin-unimport'
-import pluginImport from 'eslint-plugin-i'
+import pluginImport from 'eslint-plugin-import-x'
 import pluginUnusedImports from 'eslint-plugin-unused-imports'
 
 export default combine(
