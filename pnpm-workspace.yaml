@@ -1,4 +1,8 @@
 ignoreWorkspaceRootCheck: true
+minimumReleaseAgeExclude:
+  - '@types/node@25.9.1'
+  - tsx@4.22.3
+
 shellEmulator: true
 trustPolicy: no-downgrade
 
@@ -6,7 +10,15 @@ packages:
   - playground
   - examples/*
 
+overrides:
+  chokidar: ^5.0.0
+
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
   - unrs-resolver
+
+allowBuilds:
+  esbuild: true
+  simple-git-hooks: true
+  unrs-resolver: true
